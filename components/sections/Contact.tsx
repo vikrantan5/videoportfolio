@@ -192,14 +192,15 @@ export function Contact({ settings }: { settings: SiteSettings }) {
               </div>
             </a>
             <a
-              href={`mailto:${settings.email}`}
+              href={`mailto:${settings.email || ''}`}
               data-testid="contact-email-btn"
               className="glass group flex min-h-[120px] flex-col justify-between rounded-3xl p-5 transition-colors hover:border-lime/50 sm:p-6 lg:min-h-0 lg:flex-1"
             >
               <Mail className="h-6 w-6 text-lime sm:h-7 sm:w-7" />
               <div className="min-w-0">
-                <p className="mt-4 truncate font-syne text-base font-bold sm:mt-6 sm:text-lg" title={settings.email}>
-                  {settings.email}
+                {/* FIX: title={settings.email || undefined} */}
+                <p className="mt-4 truncate font-syne text-base font-bold sm:mt-6 sm:text-lg" title={settings.email || undefined}>
+                  {settings.email || 'Email not set'}
                 </p>
                 <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 sm:text-[10px]">For detailed briefs &amp; decks</p>
               </div>

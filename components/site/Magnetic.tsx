@@ -3,7 +3,15 @@
 import { useRef, type ReactNode, type MouseEvent } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-export function Magnetic({ children, strength = 0.35 }: { children: ReactNode; strength?: number }) {
+export function Magnetic({ 
+  children, 
+  strength = 0.35,
+  className = 'inline-block' // Default class
+}: { 
+  children: ReactNode; 
+  strength?: number;
+  className?: string; // <-- Naya prop add kiya
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -23,7 +31,13 @@ export function Magnetic({ children, strength = 0.35 }: { children: ReactNode; s
   };
 
   return (
-    <motion.div ref={ref} onMouseMove={onMove} onMouseLeave={reset} style={{ x: sx, y: sy }} className="inline-block">
+    <motion.div 
+      ref={ref} 
+      onMouseMove={onMove} 
+      onMouseLeave={reset} 
+      style={{ x: sx, y: sy }} 
+      className={className} // <-- Yahan apply kiya
+    >
       {children}
     </motion.div>
   );

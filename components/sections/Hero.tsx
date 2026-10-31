@@ -3,10 +3,12 @@
 import { motion } from 'framer-motion';
 import type { SiteSettings } from '@/types/database';
 import { Magnetic } from '@/components/site/Magnetic';
+import type { ReactNode } from 'react'; // <-- Import ReactNode
 
 const ROTATING = ['Reels', 'YouTube', 'Ads', 'Motion Graphics', 'Podcast Clips'];
 
-function MaskedLine({ children, delay }: { children: string; delay: number }) {
+// FIX: children type ko 'string' se 'ReactNode' kar diya
+function MaskedLine({ children, delay }: { children: ReactNode; delay: number }) {
   return (
     <span className="block overflow-hidden pb-1">
       <motion.span
