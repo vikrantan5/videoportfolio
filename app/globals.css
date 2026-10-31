@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lime: #c6ff3d;
+  --violet: #8b5cf6;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(198, 255, 61, 0.35) #0a0a0b;
+}
+
+body {
+  background: #0a0a0b;
+  color: #f4f4f5;
+  overflow-x: clip;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0b;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 255, 61, 0.45);
+}
+
+::selection {
+  background: #c6ff3d;
+  color: #0a0a0b;
+}
+
+:focus-visible {
+  outline: 2px solid #c6ff3d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- film grain overlay ---- */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: -100%;
+  z-index: 90;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  animation: grain 8s steps(10) infinite;
+}
+
+/* ---- typography helpers ---- */
+.text-stroke {
+  -webkit-text-stroke: 1.5px rgba(244, 244, 245, 0.22);
+  color: transparent;
+}
+.text-stroke-lime {
+  -webkit-text-stroke: 1.5px rgba(198, 255, 61, 0.5);
+  color: transparent;
+}
+
+/* ---- glass ---- */
+.glass {
+  background: rgba(18, 18, 21, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- film strip perforations ---- */
+.film-perfs {
+  background-image: radial-gradient(circle, rgba(10, 10, 11, 0.9) 3px, transparent 3.5px);
+  background-size: 18px 14px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* ---- custom cursor ---- */
+#fd-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  pointer-events: none;
+  mix-blend-mode: normal;
+}
+@media (hover: none), (pointer: coarse) {
+  #fd-cursor {
+    display: none;
+  }
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-fast,
+  .animate-marquee-reverse,
+  .animate-grain,
+  .animate-playhead,
+  .grain-overlay {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---- inputs ---- */
+.fd-input {
+  @apply w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 outline-none transition-colors focus:border-lime/60 focus:bg-white/[0.06];
+}
+.fd-label {
+  @apply mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+}

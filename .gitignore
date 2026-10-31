@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+dist/
+*.log
+.env
+.env.local
+.env.*.local
+.vercel
+.DS_Store
+public/video-portfolio-project.zip
+next-env.d.ts
+tsconfig.tsbuildinfo
